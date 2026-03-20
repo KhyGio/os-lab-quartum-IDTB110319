@@ -33,3 +33,16 @@ The flock command forces each process to wait its turn before entering
 the critical section. No two processes can read/write inventory.txt at
 the same time, eliminating the race condition entirely.
 ![App Screenshot](image/level4.png)
+
+## Level 5 - Observation Checkpoint 4
+
+Red Team vs Blue Team Results:
+- Partner's username: [partner name]
+- My inventory.txt result: 0 ✅
+- sales.log shows bot entries from my partner's swarm
+
+The mutex held up against an external user. Even though the bots were
+running from a different user account, flock still enforced the lock at
+the OS level — proving the protection works across users, not just
+within the same account.
+![App Screenshot](image/level5.png)
