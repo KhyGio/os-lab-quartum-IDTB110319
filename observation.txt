@@ -1,1 +1,17 @@
+TOC-TOU Race Condition Observations
+=====================================
+Run 1: 84
+Run 2: 78
+Run 3: 80
+Run 4: 82
+Run 5: 88
 
+Expected: 0 (50 bots x 2 widgets = 100)
+
+Explanation:
+Multiple bot processes read inventory.txt simultaneously (the "check"),
+each seeing the same value before any other process writes the updated
+number back (the "use"). The OS scheduler interleaves the 50 background
+processes unpredictably, so whichever process writes last determines the
+final value — not how many writes occurred. This is why the result is
+both wrong and different on every single run.
