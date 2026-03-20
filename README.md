@@ -22,3 +22,14 @@ Run Results:
 The inventory never reached 0. Each run produced a different incorrect
 result, proving a TOC-TOU race condition exists in the unpatched script.
 ![App Screenshot](image/level3.png)
+
+## Level 4 - Observation Checkpoint 3
+
+After implementing flock mutex:
+- inventory.txt result: 0 ✅ (exactly 0, patch successful)
+- sales.log shows exactly 50 entries, one per bot
+
+The flock command forces each process to wait its turn before entering
+the critical section. No two processes can read/write inventory.txt at
+the same time, eliminating the race condition entirely.
+![App Screenshot](image/level4.png)
